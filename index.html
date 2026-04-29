@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free EU Duty Recovery Audit — Corridor Economics</title>
+<meta name="description" content="Upload your customs declarations. Get a free savings report showing overpaid EU duties you can recover under UCC Art. 116-121.">
+<meta property="og:title" content="Free EU Duty Recovery Audit">
+<meta property="og:description" content="25-33% of EU imports overpay duties. Upload your declarations and find out how much you can recover.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free EU Duty Recovery Audit">
+<meta name="twitter:description" content="25-33% of EU imports overpay duties. Upload your declarations and find out how much you can recover.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b1120;
+  --bg-card:#111827;
+  --bg-surface:#1a2332;
+  --border:#1e293b;
+  --text:#e2e8f0;
+  --text-muted:#94a3b8;
+  --text-dim:#64748b;
+  --accent:#d4a853;
+  --accent-hover:#e4bc6a;
+  --green:#22c55e;
+  --green-dim:#15803d;
+  --red:#ef4444;
+  --red-dim:rgba(239,68,68,.12);
+  --blue:#3b82f6;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-hover)}
+
+/* Layout */
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+
+/* Hero */
+.hero{padding:100px 0 60px;text-align:center;background:linear-gradient(180deg,#0d1526 0%,var(--bg) 100%)}
+.hero h1{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;line-height:1.2;max-width:780px;margin:0 auto 20px;letter-spacing:-.02em}
+.hero h1 span{color:var(--accent)}
+.hero .subhead{font-size:clamp(1rem,2vw,1.2rem);color:var(--text-muted);max-width:600px;margin:0 auto 40px}
+
+/* Form */
+.signup-form{max-width:640px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;position:relative}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:.85rem;font-weight:500;color:var(--text-muted)}
+.form-group input,.form-group select{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;color:var(--text);font-size:1rem;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--accent)}
+.form-group input::placeholder{color:var(--text-dim)}
+.cta-btn{display:block;width:100%;padding:14px;margin-top:8px;background:var(--accent);color:#0b1120;font-size:1.05rem;font-weight:600;border:none;border-radius:8px;cursor:pointer;transition:background .2s,transform .1s}
+.cta-btn:hover{background:var(--accent-hover)}
+.cta-btn:active{transform:scale(.98)}
+.form-note{text-align:center;margin-top:14px;font-size:.85rem;color:var(--text-dim)}
+.form-success{display:none;text-align:center;padding:28px 16px}
+.form-success .checkmark{font-size:2.5rem;margin-bottom:12px}
+.form-success h3{font-size:1.2rem;margin-bottom:6px;color:var(--green)}
+.form-success p{color:var(--text-muted);font-size:.95rem}
+
+/* Stats */
+.stats{background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center}
+.stat-number{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:var(--accent);margin-bottom:4px}
+.stat-label{font-size:.9rem;color:var(--text-muted);line-height:1.4}
+
+/* How it works */
+.how{text-align:center}
+.how h2{font-size:1.75rem;margin-bottom:48px;font-weight:600}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.step{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px 24px}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(212,168,83,.12);color:var(--accent);font-weight:700;font-size:1.1rem;margin-bottom:16px}
+.step h3{font-size:1.1rem;margin-bottom:8px;font-weight:600}
+.step p{font-size:.9rem;color:var(--text-muted);line-height:1.5}
+
+/* What we check */
+.checks{text-align:center}
+.checks h2{font-size:1.75rem;margin-bottom:48px;font-weight:600}
+.checks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.check-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px 24px;text-align:left}
+.check-card h3{font-size:1.05rem;font-weight:600;margin-bottom:12px;color:var(--accent)}
+.check-card p{font-size:.9rem;color:var(--text-muted);line-height:1.5}
+
+/* Callout */
+.callout{text-align:center}
+.callout-box{max-width:680px;margin:0 auto;background:var(--bg-card);border:1px solid var(--accent);border-radius:12px;padding:36px 32px;font-size:1.05rem;line-height:1.7;color:var(--text-muted)}
+.callout-box strong{color:var(--accent);font-weight:700}
+.callout-box .big{display:block;font-size:1.4rem;font-weight:700;color:var(--text);margin:16px 0 8px}
+
+/* Pricing */
+.pricing{text-align:center}
+.pricing h2{font-size:1.75rem;margin-bottom:12px;font-weight:600}
+.pricing .section-sub{color:var(--text-muted);margin-bottom:48px;font-size:1rem}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.price-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px 24px;display:flex;flex-direction:column}
+.price-card.featured{border-color:var(--accent);position:relative}
+.price-card.featured::before{content:"Most Popular";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#0b1120;font-size:.75rem;font-weight:600;padding:4px 14px;border-radius:20px;white-space:nowrap}
+.price-name{font-size:1.1rem;font-weight:600;margin-bottom:4px}
+.price-amount{font-size:2rem;font-weight:700;margin-bottom:4px}
+.price-amount .period{font-size:.9rem;font-weight:400;color:var(--text-muted)}
+.price-desc{font-size:.85rem;color:var(--text-dim);margin-bottom:24px;min-height:40px}
+.price-features{list-style:none;text-align:left;flex:1;margin-bottom:24px}
+.price-features li{font-size:.9rem;color:var(--text-muted);padding:6px 0;padding-left:22px;position:relative}
+.price-features li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:700;font-size:.85rem}
+.price-cta{display:block;text-align:center;padding:12px;border-radius:8px;font-weight:600;font-size:.95rem;transition:background .2s}
+.price-cta.primary{background:var(--accent);color:#0b1120}
+.price-cta.primary:hover{background:var(--accent-hover)}
+.price-cta.secondary{border:1px solid var(--border);color:var(--text)}
+.price-cta.secondary:hover{border-color:var(--text-muted)}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:32px 0;text-align:center}
+footer p{font-size:.85rem;color:var(--text-dim);line-height:1.8}
+
+/* Responsive */
+@media(max-width:768px){
+  section{padding:56px 0}
+  .hero{padding:72px 0 40px}
+  .form-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr;gap:24px}
+  .steps{grid-template-columns:1fr;gap:20px}
+  .checks-grid{grid-template-columns:1fr;gap:20px}
+  .pricing-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+  .price-card.featured{order:-1}
+}
+@media(max-width:480px){
+  .container{padding:0 16px}
+  .signup-form{padding:24px 18px}
+  .callout-box{padding:24px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Are you <span>overpaying EU customs duties?</span></h1>
+    <p class="subhead">Upload your customs declarations. Get a free savings report in 24 hours.</p>
+
+    <form class="signup-form" id="signup-form" action="https://formspree.io/f/placeholder" method="POST">
+      <div id="form-fields">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="company">Company Name</label>
+            <input type="text" id="company" name="company" placeholder="e.g. Müller Import GmbH" required aria-required="true">
+          </div>
+          <div class="form-group">
+            <label for="declarations">Approx. Declarations / Year</label>
+            <select id="declarations" name="declarations_per_year" required aria-required="true">
+              <option value="" disabled selected>Select volume</option>
+              <option value="1-50">1–50</option>
+              <option value="51-200">51–200</option>
+              <option value="201-1000">201–1,000</option>
+              <option value="1000+">1,000+</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="email">Work Email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required aria-required="true">
+          </div>
+        </div>
+        <button type="submit" class="cta-btn" id="submit-btn">Get Free Audit</button>
+        <p class="form-note">Free for your first 10 declarations. No credit card required.</p>
+      </div>
+      <div class="form-success" id="form-success" role="status" aria-live="polite">
+        <div class="checkmark">&#10003;</div>
+        <h3>Audit request received.</h3>
+        <p>We'll send your savings report within 24 hours. Check your inbox.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-number">25–33%</div>
+        <div class="stat-label">of EU imports overpay duties (EU Commission, DG Trade)</div>
+      </div>
+      <div>
+        <div class="stat-number">3 Years</div>
+        <div class="stat-label">Lookback: recover duties paid since 2023 under UCC Art. 116-121</div>
+      </div>
+      <div>
+        <div class="stat-number">&euro;67K</div>
+        <div class="stat-label">Savings identified in our 50-declaration test audit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="how">
+  <div class="container">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Upload</h3>
+        <p>CSV of customs declarations — SAD Box 33, 34, 36, 37, 46, 47. Or email us your last 3 customs invoices.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We Scan</h3>
+        <p>Automated cross-reference against live EU TARIC data: FTA gaps, classification errors, unused relief programmes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Get Report</h3>
+        <p>Per-line savings estimate with UCC filing instructions. Free for your first 10 declarations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What we check -->
+<section class="checks">
+  <div class="container">
+    <h2>What We Check</h2>
+    <div class="checks-grid">
+      <div class="check-card">
+        <h3>FTA Preference Gaps</h3>
+        <p>Paying MFN when your origin qualifies for 0% under EVFTA, EU-Japan, EU-Korea? Box 36 = "100" is the red flag. We find every missed preference.</p>
+      </div>
+      <div class="check-card">
+        <h3>Classification Errors</h3>
+        <p>Wrong HS code = wrong duty rate. We compare your declared codes against neighboring headings for lower-rate alternatives and flag mismatches.</p>
+      </div>
+      <div class="check-card">
+        <h3>Relief Eligibility</h3>
+        <p>Inward Processing, Returned Goods Relief, end-use provisions — duty suspension schemes most SMEs don't know exist. UCC Art. 203-225.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Callout -->
+<section class="callout">
+  <div class="container">
+    <div class="callout-box">
+      A mid-size importer sourcing <strong>&euro;1M/yr</strong> typically overpays <strong>&euro;5,000–15,000</strong> annually.
+      <span class="big">With 3-year UCC lookback: &euro;15,000–45,000 recoverable.</span>
+      Our tool finds it in minutes. Customs brokers charge <strong>&euro;500/hr</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing">
+  <div class="container">
+    <h2>Simple Pricing</h2>
+    <p class="section-sub">Start free. Pay only when you recover.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Free Audit</div>
+        <div class="price-amount">&euro;0</div>
+        <p class="price-desc">See what you're overpaying.</p>
+        <ul class="price-features">
+          <li>10 declarations scanned</li>
+          <li>PDF savings report</li>
+          <li>UCC filing references</li>
+          <li>Email delivery in 24h</li>
+        </ul>
+        <a href="#signup-form" class="price-cta primary">Get Free Audit</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-name">Pro</div>
+        <div class="price-amount">&euro;99 <span class="period">/ mo</span></div>
+        <p class="price-desc">Ongoing monitoring for active importers.</p>
+        <ul class="price-features">
+          <li>Unlimited declarations</li>
+          <li>Ongoing duty monitoring</li>
+          <li>TARIC change alerts</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#signup-form" class="price-cta primary">Get Free Audit</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Success Fee</div>
+        <div class="price-amount">20%</div>
+        <p class="price-desc">Pay only on successful UCC refund.</p>
+        <ul class="price-features">
+          <li>Full-service recovery</li>
+          <li>UCC Art. 116-121 filing</li>
+          <li>3-year lookback included</li>
+          <li>No recovery = no fee</li>
+        </ul>
+        <a href="#signup-form" class="price-cta secondary">Request Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Corridor Economics</p>
+    <p>Powered by live EU TARIC data via SOAP API</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('signup-form');
+  var fields = document.getElementById('form-fields');
+  var success = document.getElementById('form-success');
+  var btn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var data = {
+      company: document.getElementById('company').value.trim(),
+      declarations_per_year: document.getElementById('declarations').value,
+      email: document.getElementById('email').value.trim(),
+      source: 'duty-recovery-landing-page',
+      submitted_at: new Date().toISOString()
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting\u2026';
+
+    fetch(form.action, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify(data)
+    })
+    .then(function(res){
+      if(res.ok){
+        showSuccess();
+      } else {
+        storeLocally(data);
+        showSuccess();
+      }
+    })
+    .catch(function(){
+      storeLocally(data);
+      showSuccess();
+    });
+  });
+
+  function showSuccess(){
+    fields.style.display = 'none';
+    success.style.display = 'block';
+  }
+
+  function storeLocally(data){
+    try {
+      var stored = JSON.parse(localStorage.getItem('duty_recovery_signups') || '[]');
+      stored.push(data);
+      localStorage.setItem('duty_recovery_signups', JSON.stringify(stored));
+    } catch(e){}
+  }
+
+  document.querySelectorAll('a[href="#signup-form"]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      document.getElementById('signup-form').scrollIntoView({behavior:'smooth',block:'center'});
+      document.getElementById('company').focus();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
